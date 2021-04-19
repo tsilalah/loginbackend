@@ -18,14 +18,14 @@ public class LoginController {
     @Qualifier("sessionUser")
     User user;
 
-    @GetMapping(value= "/nickname/{nickname}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> setNickname(@PathVariable String nickname) {
+    @PostMapping(value= "/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> setNickname(@RequestBody String nickname) {
         user.setNickname(nickname);
         logger.info("Set Nickname " + nickname);
         return ResponseEntity.ok(user.getNickname());
     }
 
-    @GetMapping(value= "/counter", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value= "/counter", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> incrementCounter() {
         user.setCounter(user.getCounter() + 1);
         logger.info("Increment counter to " + user.getCounter());
